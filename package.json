@@ -1,0 +1,33 @@
+{
+  "name": "mathjax-unicode-math",
+  "main": "./js/Configuration.js",
+  "version": "1.0.0",
+  "description": "MathJax TeX input extension reimplementing (parts of) the unicode-math package",
+  "keywords": [
+    "MathJax",
+    "TeX",
+    "unicode-math"
+  ],
+  "license": "UNLICENSED",
+  "contributors": [
+    "Peter Krautzberger (https://github.com/pkra)",
+    "David Jones (https://github.com/davidmjones)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AmerMathSoc/mathjax-unicode-math"
+  },
+  "homepage": "https://github.com/AmerMathSoc/mathjax-unicode-math/",
+  "bugs": {
+    "url": "https://github.com/AmerMathSoc/mathjax-unicode-math/issues"
+  },
+  "scripts": {
+    "release": "standard-version",
+    "test": "echo 'No tests yet'"
+  },
+  "devDependencies": {
+    "mathjax-full": "^3.1.2",
+    "standard-version": "^9.0.0",
+    "typescript": "^3.9.7"
+  }
+}
