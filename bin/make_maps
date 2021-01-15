@@ -1,0 +1,121 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+
+use version; our $VERSION = qv '0.0.0';
+
+use FindBin;
+
+my $unicode_math_table = qq{/ams/texmf/archive/texlive2020/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex};
+
+my $ts_dir = qq{$FindBin::RealBin/../ts};
+
+my $template = qq{$ts_dir/Configuration.ts.template};
+
+my $output_file = "$ts_dir/Configuration.ts";
+
+sub process_unicode_math_table( $$ ) {
+    my $table = shift;
+    my $out   = shift;
+
+    my %delimiter;
+
+    print { $out } << 'EOF';
+new CommandMap(
+    'unicode-math-macros',
+    {
+EOF
+
+    open(my $in, "<", $table) or die "Can't read $table: $!\n";
+
+    while (<$in>) {
+        chomp;
+
+        next if m{^%};
+        next if m{^\s*$};
+
+        m{^\\UnicodeMathSymbol
+              \{"([abcdef\d]+)\}
+              \{\\(\w+)\s*\}
+              \{\\math(\w+)\s*\}}smxi
+            and do {
+                my $code_point = $1;
+                my $csname     = $2;
+                my $type       = $3;
+
+                $code_point =~ s{^0(....)$}{$1};
+
+                if ($type eq 'open' || $type eq 'close' || $type eq 'fence') {
+                    $delimiter{$code_point} = $csname;
+                }
+                elsif ($type eq 'ord' || $type eq 'alpha') {
+                    print { $out } qq{        ${csname}: ['Macro', '\\u$code_point'],\n};
+                }
+                elsif ($type eq 'over' || $type eq 'under' || $type =~ m{accent}) {
+                    # Presumably the third argument says what kind of accent?
+                    print { $out } qq{        ${csname}: ['Accent', '$code_point', 1],\n};
+                } elsif ($type eq 'op' || $type eq 'bin' || $type eq 'punct' || $type eq 'rel') {
+                    print { $out } qq{        ${csname}: ['Macro', '\\\\mmlToken{mo}{\\u$code_point}'],\n};
+                } else {
+                    warn "Unknown type '$type' on line $.\n";
+                }
+
+                next;
+        };
+
+        print "Unexpected input '$_'\n";
+    }
+
+    close($in);
+
+    print { $out } << 'EOF';
+    },
+    Methods
+);
+
+new DelimiterMap('unicode-math-delimiters', ParseMethods.delimiter, {
+EOF
+
+    for my $code_point (sort { $a cmp $b } keys %delimiter) {
+        my $csname = $delimiter{$code_point};
+
+        print { $out } qq{    '\\\\$csname': '\\u$code_point',\n};
+    }
+
+    # Do delimiters;
+
+print { $out } qq{\});\n\n};
+
+    return;
+}
+
+open(my $ts, "<", $template) or die "Can't open $template: $!\n";
+
+open(my $out, ">", $output_file) or die "Can't open $output_file: $!\n";
+
+while (<$ts>) {
+    m{^new CommandMap} and do {
+        while (<$ts>) {
+            last if m{^new EnvironmentMap};
+        }
+
+        last;
+    };
+
+    print { $out } $_;
+}
+
+process_unicode_math_table($unicode_math_table, $out);
+
+print { $out } qq{new EnvironmentMap(\n};
+
+while (<$ts>) {
+    print { $out } $_;
+}
+
+close($out);
+
+close($ts);
+
+__END__

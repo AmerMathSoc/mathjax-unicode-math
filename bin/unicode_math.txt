@@ -1,0 +1,88 @@
+Standard TeX math atoms:
+
+\mathbin    [176]           ['Macro', '\\mmltoken{mo}{\uXXXX}']
+
+    \UnicodeMathSymbol{"0002B}{\mathplus}{\mathbin}{plus sign b:}%
+
+\mathclose  [29]            DelimiterMap: '\\$csname': '\uXXXX'
+
+    \UnicodeMathSymbol{"00029}{\rparen}{\mathclose}{right parenthesis}%
+
+\mathop     [62]           ['Macro', '\\mmltoken{mo}{\uXXXX}']
+
+    \UnicodeMathSymbol{"0220F}{\prod}{\mathop}{product operator}%
+
+\mathopen   [33]            DelimiterMap: '\\$csname': '\uXXXX'
+
+    \UnicodeMathSymbol{"00028}{\lparen}{\mathopen}{left parenthesis}%
+
+\mathord    [452]           ['Macro', '\uXXXX']
+
+    \UnicodeMathSymbol{"00024}{\mathdollar}{\mathord}{dollar sign}%
+
+\mathpunct  [4]           ['Macro', '\\mmltoken{mo}{\uXXXX}']
+
+    \UnicodeMathSymbol{"00021}{\mathexclam}{\mathpunct}{exclamation mark}%
+
+\mathrel    [591]           ['Macro', '\\mmltoken{mo}{\uXXXX}']
+
+    \UnicodeMathSymbol{"0003C}{\less}{\mathrel}{less-than sign r:}%    
+
+Extensions:
+
+\mathalpha == \mathord  [1049]           ['Macro', '\uXXXX']
+
+    \UnicodeMathSymbol{"00391}{\mupAlpha}{\mathalpha}{capital alpha, greek}%
+
+\mathover   [3] % over accent       ['Accent', '$code_point', X]
+
+    \UnicodeMathSymbol{"023B4}{\overbracket}{\mathover}{top square bracket}%
+    \UnicodeMathSymbol{"023DC}{\overparen}{\mathover}{top parenthesis (mathematical use)}%
+    \UnicodeMathSymbol{"023DE}{\overbrace}{\mathover}{top curly bracket (mathematical use)}%
+
+\mathunder  [3] % under accent      ['Accent', '$code_point', X]
+
+    \UnicodeMathSymbol{"023B5}{\underbracket}{\mathunder}{bottom square bracket}%
+    \UnicodeMathSymbol{"023DD}{\underparen}{\mathunder}{bottom parenthesis (mathematical use)}%
+    \UnicodeMathSymbol{"023DF}{\underbrace}{\mathunder}{bottom curly bracket (mathematical use)}%
+
+% \mathfence    [3]            DelimiterMap: '\\$csname': '\uXXXX'
+
+    \UnicodeMathSymbol{"0007C}{\vert}{\mathfence}{vertical bar}%
+    \UnicodeMathSymbol{"02016}{\Vert}{\mathfence}{double vertical bar}%
+    \UnicodeMathSymbol{"02980}{\Vvert}{\mathfence}{triple vertical bar delimiter}%
+
+\mathaccent     [26]            ['Accent', '$code_point', X]
+
+    \UnicodeMathSymbol{"00300}{\grave}{\mathaccent}{grave accent}%
+
+% \mathaccentoverlay
+
+\mathaccentwide [7]             ['Accent', '$code_point', X]
+
+    \UnicodeMathSymbol{"00302}{\widehat}{\mathaccentwide}{circumflex accent}%
+
+\mathbotaccent  [1]             ['Accent', '$code_point', X]
+
+    \UnicodeMathSymbol{"020E8}{\threeunderdot}{\mathbotaccent}{combining triple underdot}%
+
+\mathbotaccentwide  [7]         ['Accent', '$code_point', X]
+
+    \UnicodeMathSymbol{"00330}{\wideutilde}{\mathbotaccentwide}{under tilde accent (multiple characters and non-spacing)}%
+
+===========================================================================
+
+TBD
+
+Math alphabets and the such:
+
+\symnormal \symliteral \symup \symbfup \symbfit \symsfup \symsfit
+\symbfsfup \symbfsfit \symbfsf \symbb \symbbit \symscr \symbfscr
+\symcal \symbfcal \symfrak \symbffrak \symup \symsf \symbf \symtt
+\symit
+
+\mathnormal \mathbb \mathbbit \mathscr \mathbfscr \mathcal \mathbfcal
+\mathfrak \mathbffrak \mathbfup \mathbfit \mathsfup \mathsfit \mathbfsfup
+\mathbfsfit \mathbfsf
+
+So what about \mathup, \mathit, \mathbf, \mathsf, and \mathtt?
