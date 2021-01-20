@@ -15,17 +15,162 @@ my $template = qq{$ts_dir/Configuration.ts.template};
 
 my $output_file = "$ts_dir/Configuration.ts";
 
-sub process_unicode_math_table( $$ ) {
+OUTPUT: {
+    my $fh;
+    my $indent = 0;
+
+    sub open_output( $ ) {
+        open($fh, ">", $output_file) or die "Can't open $output_file: $!\n";
+
+        return;
+    };
+
+    sub close_output() {
+        close($fh);
+
+        undef $fh;
+
+        return;
+    }
+
+    sub output(@) {
+        print { $fh } " " x $indent;
+        print { $fh } @_;
+    }
+
+    sub indent() {
+        $indent += 4;
+    };
+
+    sub deindent() {
+        $indent -= 4;
+    };
+}
+
+sub output_ord {
+    my $csname     = shift;
+    my $code_point = shift;
+    my $type       = shift;
+
+    output qq{${csname}: ['Macro', '\\u$code_point'],\n};
+
+    return;
+}
+
+# Cf. https://github.com/mathjax/MathJax-src/blob/aa41c0b9362de07c29dcef6de474941385386293/ts/input/tex/base/BaseMappings.ts#L565
+
+sub output_accent( $$ ) {
+    my $csname = shift;
+    my $code_point = shift;
+    my $type   = shift;
+
+    output qq{${csname}: ['Accent', '$code_point'],\n};
+
+    return;
+}
+
+sub output_accentwide( $$ ) {
+    my $csname = shift;
+    my $code_point = shift;
+    my $type   = shift;
+
+    output qq{${csname}: ['Accent', '$code_point', 1],\n};
+
+    return;
+}
+
+# Cf. https://github.com/mathjax/MathJax-src/blob/aa41c0b9362de07c29dcef6de474941385386293/ts/input/tex/base/BaseMappings.ts#L635
+
+sub output_accentoverlay( $$ ) {
+    my $csname = shift;
+    my $code_point = shift;
+    my $type   = shift;
+
+    # output qq{${csname}: ['Accent', '$code_point'],\n};
+
+    output qq{${csname}: 'Not',\n};
+
+    return;
+}
+
+# Cf. https://github.com/mathjax/MathJax-src/blob/aa41c0b9362de07c29dcef6de474941385386293/ts/input/tex/base/BaseMappings.ts#L458
+
+sub output_underover( $$ ) {
+    my $csname = shift;
+    my $code_point = shift;
+    my $type   = shift;
+
+    output qq{${csname}: ['UnderOver', '$code_point'],\n};
+
+    return;
+}
+
+sub output_botaccent( $$ ) {
+    my $csname = shift;
+    my $code_point = shift;
+    my $type   = shift;
+
+    output qq{${csname}: ['UnderOver', '$code_point'],\n};
+
+    return;
+}
+
+sub output_botaccentwide( $$ ) {
+    my $csname = shift;
+    my $code_point = shift;
+    my $type   = shift;
+
+    output qq{${csname}: ['UnderOver', '$code_point', 1],\n};
+
+    return;
+}
+
+sub output_op( $$ ) {
+    my $csname = shift;
+    my $code_point = shift;
+    my $type   = shift;
+
+    output qq{${csname}: ['Macro', '\\\\mmlToken{mo}{\\u$code_point}'],\n};
+
+    return;
+}
+
+HANDLERS: {
+    my %HANDLERS = (
+        ord           => \&output_ord,
+        alpha         => \&output_ord,
+        bin           => \&output_op,
+        op            => \&output_op,
+        punct         => \&output_op,
+        rel           => \&output_op,
+        over          => \&output_underover,
+        under         => \&output_underover,
+        accent        => \&output_accent,
+        accentoverlay => \&output_accentoverlay,
+        accentwide    => \&output_accentwide,
+        botaccent     => \&output_botaccent,
+        botaccentwide => \&output_botaccentwide,
+        );
+
+    sub get_handler( $ ) {
+        my $type = shift;
+
+        return $HANDLERS{$type};
+    }
+}
+
+sub process_unicode_math_table( $ ) {
     my $table = shift;
-    my $out   = shift;
 
     my %delimiter;
 
-    print { $out } << 'EOF';
+    output << 'EOF';
 new CommandMap(
     'unicode-math-macros',
     {
 EOF
+
+    my %csname;
 
     open(my $in, "<", $table) or die "Can't read $table: $!\n";
 
@@ -48,17 +193,14 @@ EOF
 
                 if ($type eq 'open' || $type eq 'close' || $type eq 'fence') {
                     $delimiter{$code_point} = $csname;
-                }
-                elsif ($type eq 'ord' || $type eq 'alpha') {
-                    print { $out } qq{        ${csname}: ['Macro', '\\u$code_point'],\n};
-                }
-                elsif ($type eq 'over' || $type eq 'under' || $type =~ m{accent}) {
-                    # Presumably the third argument says what kind of accent?
-                    print { $out } qq{        ${csname}: ['Accent', '$code_point', 1],\n};
-                } elsif ($type eq 'op' || $type eq 'bin' || $type eq 'punct' || $type eq 'rel') {
-                    print { $out } qq{        ${csname}: ['Macro', '\\\\mmlToken{mo}{\\u$code_point}'],\n};
                 } else {
-                    warn "Unknown type '$type' on line $.\n";
+                    $csname{$type}->{$csname} = $code_point;
+
+                    # if (defined(my $handler = get_handler($type))) {
+                    #     $handler->($csname, $code_point, $type);
+                    # } else {
+                    #     warn "No handler for $type\n";
+                    # }
                 }
 
                 next;
@@ -69,7 +211,33 @@ EOF
 
     close($in);
 
-    print { $out } << 'EOF';
+    indent();
+    indent();
+
+    for my $type (qw(accent accentwide accentoverlay botaccent botaccentwide over under alpha ord bin op rel punct)) {
+        my %macros = %{ $csname{$type} };
+
+        my $handler = get_handler($type);
+
+        if (! defined $handler) {
+            warn "No handler for $type\n";
+
+            next;
+        }
+
+        output qq{// \\math$type\n};
+
+        for my $csname (sort keys %macros) {
+            my $code_point = $macros{$csname};
+
+            $handler->($csname, $code_point, $type);
+        }
+    }
+
+    deindent();
+    deindent();
+
+    output << 'EOF';
     },
     Methods
 );
@@ -80,19 +248,17 @@ EOF
     for my $code_point (sort { $a cmp $b } keys %delimiter) {
         my $csname = $delimiter{$code_point};
 
-        print { $out } qq{    '\\\\$csname': '\\u$code_point',\n};
+        output qq{    '\\\\$csname': '\\u$code_point',\n};
     }
 
-    # Do delimiters;
-
-print { $out } qq{\});\n\n};
+    output qq{\});\n\n};
 
     return;
 }
 
 open(my $ts, "<", $template) or die "Can't open $template: $!\n";
 
-open(my $out, ">", $output_file) or die "Can't open $output_file: $!\n";
+open_output($output_file);
 
 while (<$ts>) {
     m{^new CommandMap} and do {
@@ -103,18 +269,18 @@ while (<$ts>) {
         last;
     };
 
-    print { $out } $_;
+    output $_;
 }
 
-process_unicode_math_table($unicode_math_table, $out);
+process_unicode_math_table($unicode_math_table);
 
-print { $out } qq{new EnvironmentMap(\n};
+output qq{new EnvironmentMap(\n};
 
 while (<$ts>) {
-    print { $out } $_;
+    output $_;
 }
 
-close($out);
+close_output();
 
 close($ts);
 
