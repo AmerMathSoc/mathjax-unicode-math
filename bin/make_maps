@@ -11,7 +11,7 @@ my $unicode_math_table = qq{/ams/texmf/archive/texlive2020/texmf-dist/tex/latex/
 
 my $ts_dir = qq{$FindBin::RealBin/../ts};
 
-my $template = qq{$ts_dir/Configuration.ts.template};
+my $template = qq{Configuration.ts.template};
 
 my $output_file = "$ts_dir/Configuration.ts";
 
