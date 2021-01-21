@@ -26,7 +26,7 @@ new EnvironmentMap(
     }
 );
 
-export const configuration = Configuration.create('ams-macros', {
+export const configuration = Configuration.create('unicode-math', {
     handler: {
         delimiter: ['unicode-math-delimiters'],
         macro: ['unicode-math-macros', 'unicode-math-delimiters'],
