@@ -23,11 +23,12 @@
   },
   "scripts": {
     "release": "standard-version",
-    "test": "echo 'No tests yet'",
+    "test": "node test/base.js > ./test/test.html",
+    "postinstall": "cd node_modules/mathjax-full && npm i && npm run compile",
     "build": "cd bin && perl make_maps && cd .. && npx tsc"
   },
   "devDependencies": {
-    "mathjax-full": "^3.1.2",
+    "mathjax-full": "github:mathjax/MathJax-src#stix2",
     "standard-version": "^9.0.0",
     "typescript": "^3.9.7"
   }
