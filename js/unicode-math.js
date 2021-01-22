@@ -5,7 +5,10 @@ var Configuration_js_1 = require("mathjax-full/js/input/tex/Configuration.js");
 var SymbolMap_js_1 = require("mathjax-full/js/input/tex/SymbolMap.js");
 var ParseMethods_js_1 = require("mathjax-full/js/input/tex/ParseMethods.js");
 var BaseMethods_js_1 = require("mathjax-full/js/input/tex/base/BaseMethods.js");
-var Methods = {};
+var unicodeMathMethods = {};
+unicodeMathMethods.Macro = BaseMethods_js_1.default.Macro;
+unicodeMathMethods.Accent = BaseMethods_js_1.default.Accent;
+unicodeMathMethods.UnderOver = BaseMethods_js_1.default.UnderOver;
 new SymbolMap_js_1.CommandMap('unicode-math-macros', {
     acute: ['Accent', '0301'],
     annuity: ['Accent', '20E7'],
@@ -2387,7 +2390,7 @@ new SymbolMap_js_1.CommandMap('unicode-math-macros', {
     mathcolon: ['Macro', '\\mmlToken{mo}{\u003A}'],
     mathcomma: ['Macro', '\\mmlToken{mo}{\u002C}'],
     mathsemicolon: ['Macro', '\\mmlToken{mo}{\u003B}'],
-}, Methods);
+}, unicodeMathMethods);
 new SymbolMap_js_1.DelimiterMap('unicode-math-delimiters', ParseMethods_js_1.default.delimiter, {
     '\\mathexclam': '\u0021',
     '\\lparen': '\u0028',
@@ -2456,14 +2459,11 @@ new SymbolMap_js_1.DelimiterMap('unicode-math-delimiters', ParseMethods_js_1.def
     '\\lcurvyangle': '\u29FC',
     '\\rcurvyangle': '\u29FD',
 });
-new SymbolMap_js_1.EnvironmentMap('unicode-math-environments', ParseMethods_js_1.default.environment, {}, {
-    Array: BaseMethods_js_1.default.Array,
-});
+new SymbolMap_js_1.EnvironmentMap('unicode-math-environments', ParseMethods_js_1.default.environment, {}, {});
 exports.configuration = Configuration_js_1.Configuration.create('unicode-math', {
     handler: {
         delimiter: ['unicode-math-delimiters'],
-        macro: ['unicode-math-macros', 'unicode-math-delimiters'],
-        environment: ['unicode-math-environments'],
+        macro: ['unicode-math-macros', 'unicode-math-delimiters']
     },
 });
 //# sourceMappingURL=unicode-math.js.map
