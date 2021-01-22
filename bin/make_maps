@@ -13,7 +13,7 @@ my $ts_dir = qq{$FindBin::RealBin/../ts};
 
 my $template = qq{Configuration.ts.template};
 
-my $output_file = "$ts_dir/Configuration.ts";
+my $output_file = "$ts_dir/unicode-math.ts";
 
 OUTPUT: {
     my $fh;

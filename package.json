@@ -1,6 +1,6 @@
 {
   "name": "mathjax-unicode-math",
-  "main": "./js/Configuration.js",
+  "main": "./js/unicode-math.js",
   "version": "1.0.0",
   "description": "MathJax TeX input extension reimplementing (parts of) the unicode-math package",
   "keywords": [
@@ -23,7 +23,8 @@
   },
   "scripts": {
     "release": "standard-version",
-    "test": "echo 'No tests yet'"
+    "test": "echo 'No tests yet'",
+    "build": "cd bin && perl make_maps && cd .. && npx tsc"
   },
   "devDependencies": {
     "mathjax-full": "^3.1.2",
