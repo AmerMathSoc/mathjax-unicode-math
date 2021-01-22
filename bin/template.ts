@@ -4,13 +4,17 @@ import { ParseMethod } from 'mathjax-full/js/input/tex/Types.js';
 import ParseMethods from 'mathjax-full/js/input/tex/ParseMethods.js';
 import BaseMethods from 'mathjax-full/js/input/tex/base/BaseMethods.js';
 
-let Methods: Record<string, ParseMethod> = {};
+let unicodeMathMethods: Record<string, ParseMethod> = {};
+
+unicodeMathMethods.Macro = BaseMethods.Macro;
+unicodeMathMethods.Accent = BaseMethods.Accent;
+unicodeMathMethods.UnderOver = BaseMethods.UnderOver;
 
 new CommandMap(
     'unicode-math-macros',
     {
     },
-    Methods
+    unicodeMathMethods
 );
 
 new DelimiterMap('unicode-math-delimiters', ParseMethods.delimiter, {
@@ -22,14 +26,12 @@ new EnvironmentMap(
     {
     },
     {
-        Array: BaseMethods.Array,
     }
 );
 
 export const configuration = Configuration.create('unicode-math', {
     handler: {
         delimiter: ['unicode-math-delimiters'],
-        macro: ['unicode-math-macros', 'unicode-math-delimiters'],
-        environment: ['unicode-math-environments'],
+        macro: ['unicode-math-macros', 'unicode-math-delimiters']
     },
 });

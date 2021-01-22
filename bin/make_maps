@@ -239,7 +239,7 @@ EOF
 
     output << 'EOF';
     },
-    Methods
+    unicodeMathMethods
 );
 
 new DelimiterMap('unicode-math-delimiters', ParseMethods.delimiter, {
