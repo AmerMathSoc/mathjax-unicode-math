@@ -7,13 +7,14 @@ use version; our $VERSION = qv '0.0.0';
 
 use FindBin;
 
-my $src_dir = $FindBin::RealBin;
-my $ts_dir  = qq{$src_dir/../ts};
+my $src_dir  = $FindBin::RealBin;
+my $test_dir = qq{$src_dir/../test};
 
 my $unicode_math_table = qq{$src_dir/unicode-math-table.tex};
-my $template           = qq{$src_dir/template.ts};
 
-my $output_file = "$ts_dir/unicode-math.ts";
+# my $template           = qq{$src_dir/template.ts};
+
+my $output_file = "$test_dir/unicode-math.html";
 
 OUTPUT: {
     my $fh;
@@ -22,10 +23,18 @@ OUTPUT: {
     sub open_output( $ ) {
         open($fh, ">", $output_file) or die "Can't open $output_file: $!\n";
 
+        while (<DATA>) {
+            last if m{__END__};
+
+            print { $fh } $_;
+        }
+
         return;
     };
 
     sub close_output() {
+        print { $fh } qq{\n</body>\n\n</html>\n};
+
         close($fh);
 
         undef $fh;
@@ -52,19 +61,17 @@ sub output_ord {
     my $code_point = shift;
     my $type       = shift;
 
-    output qq{${csname}: ['Macro', '\\u$code_point'],\n};
+    output qq{<p>${csname}: \$\\$csname\$</p>\n};
 
     return;
 }
-
-# Cf. https://github.com/mathjax/MathJax-src/blob/aa41c0b9362de07c29dcef6de474941385386293/ts/input/tex/base/BaseMappings.ts#L565
 
 sub output_accent( $$ ) {
     my $csname = shift;
     my $code_point = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['Accent', '$code_point'],\n};
+    output qq{<p>${csname}: \$ \\${csname}{a} \$, \$ \\${csname}{A} \$</p>\n};
 
     return;
 }
@@ -74,33 +81,27 @@ sub output_accentwide( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['Accent', '$code_point', 1],\n};
+    output qq{<p>${csname}: \$ \\${csname}{aa} \$, \$ \\${csname}{aaaaaaa} \$</p>\n};
 
     return;
 }
-
-# Cf. https://github.com/mathjax/MathJax-src/blob/aa41c0b9362de07c29dcef6de474941385386293/ts/input/tex/base/BaseMappings.ts#L635
 
 sub output_accentoverlay( $$ ) {
     my $csname = shift;
     my $code_point = shift;
     my $type   = shift;
 
-    # output qq{${csname}: ['Accent', '$code_point'],\n};
-
-    output qq{${csname}: 'Not',\n};
+    output qq{<p>${csname}: \$ \\${csname}{a} \$, \$ \\${csname}{A} \$</p>\n};
 
     return;
 }
-
-# Cf. https://github.com/mathjax/MathJax-src/blob/aa41c0b9362de07c29dcef6de474941385386293/ts/input/tex/base/BaseMappings.ts#L458
 
 sub output_underover( $$ ) {
     my $csname = shift;
     my $code_point = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['UnderOver', '$code_point'],\n};
+    output qq{<p>${csname}: \$ \\${csname}{a} \$, \$ \\${csname}{A} \$</p>\n};
 
     return;
 }
@@ -110,7 +111,7 @@ sub output_botaccent( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['UnderOver', '$code_point'],\n};
+    output qq{<p>${csname}: \$ \\${csname}{a} \$, \$ \\${csname}{A} \$</p>\n};
 
     return;
 }
@@ -120,7 +121,7 @@ sub output_botaccentwide( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['UnderOver', '$code_point', 1],\n};
+    output qq{<p>${csname}: \$ \\${csname}{aa} \$, \$ \\${csname}{aaaaaaa} \$</p>\n};
 
     return;
 }
@@ -130,7 +131,7 @@ sub output_op( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['Macro', '\\\\mmlToken{mo}{\\u$code_point}'],\n};
+    output qq{<p>${csname}: \$ x \\${csname} y \$</p>\n};
 
     return;
 }
@@ -163,12 +164,6 @@ sub process_unicode_math_table( $ ) {
     my $table = shift;
 
     my %delimiter;
-
-    output << 'EOF';
-new CommandMap(
-    'unicode-math-macros',
-    {
-EOF
 
     my %csname;
 
@@ -211,10 +206,9 @@ EOF
 
     close($in);
 
-    indent();
-    indent();
+    for my $type (qw(accent accentwide accentoverlay botaccent botaccentwide over under alpha bin op rel punct ord)) {
+        output qq{\n<h1>math$type</h1>\n\n};
 
-    for my $type (qw(accent accentwide accentoverlay botaccent botaccentwide over under alpha ord bin op rel punct)) {
         my %macros = %{ $csname{$type} };
 
         my $handler = get_handler($type);
@@ -225,8 +219,6 @@ EOF
             next;
         }
 
-        output qq{// \\math$type\n};
-
         for my $csname (sort keys %macros) {
             my $code_point = $macros{$csname};
 
@@ -234,54 +226,143 @@ EOF
         }
     }
 
-    deindent();
-    deindent();
-
-    output << 'EOF';
-    },
-    unicodeMathMethods
-);
-
-new DelimiterMap('unicode-math-delimiters', ParseMethods.delimiter, {
-EOF
+    output qq{\n<h1>Delimiters</h1>\n\n};
 
     for my $code_point (sort { $a cmp $b } keys %delimiter) {
         my $csname = $delimiter{$code_point};
 
-        output qq{    '\\\\$csname': '\\u$code_point',\n};
-    }
+        ## Need to improve this, obvs
 
-    output qq{\});\n\n};
+        output qq{<p>${csname}: \$ \\${csname} \$</p>\n};
+    }
 
     return;
 }
 
-open(my $ts, "<", $template) or die "Can't open $template: $!\n";
-
 open_output($output_file);
-
-while (<$ts>) {
-    m{^new CommandMap} and do {
-        while (<$ts>) {
-            last if m{^new EnvironmentMap};
-        }
-
-        last;
-    };
-
-    output $_;
-}
 
 process_unicode_math_table($unicode_math_table);
 
-output qq{new EnvironmentMap(\n};
-
-while (<$ts>) {
-    output $_;
-}
-
 close_output();
 
-close($ts);
+__DATA__
+
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title><style id="MJX-SVG-styles">
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+</style></head>
+
+<body>
 
 __END__
