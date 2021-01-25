@@ -52,7 +52,7 @@ sub output_ord {
     my $code_point = shift;
     my $type       = shift;
 
-    output qq{${csname}: ['Macro', '\\u$code_point'],\n};
+    output qq{${csname}: ['Macro', '\\u{$code_point}'],\n};
 
     return;
 }
@@ -130,7 +130,7 @@ sub output_op( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['Macro', '\\\\mmlToken{mo}{\\u$code_point}'],\n};
+    output qq{${csname}: ['Macro', '\\\\mmlToken{mo}{\\u{$code_point}}'],\n};
 
     return;
 }
@@ -248,7 +248,7 @@ EOF
     for my $code_point (sort { $a cmp $b } keys %delimiter) {
         my $csname = $delimiter{$code_point};
 
-        output qq{    '\\\\$csname': '\\u$code_point',\n};
+        output qq{    '\\\\$csname': '\\u{$code_point}',\n};
     }
 
     output qq{\});\n\n};
