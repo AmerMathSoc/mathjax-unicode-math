@@ -162,7 +162,7 @@ sub output_delim( $$$$ ) {
 
     output_row $l, qq{U+$lp U+$rp}, qq{\\( \\$l x \\$r \\)}, qq{\\( &#x$lp; x &#x$rp; \\)};
 
-    output_row $l, qq{U+$lp U+$rp}, qq{\\( \\left\\$l $tall \\right\\$r \\)}, qq{\\( \\left&#x$lp; $tall \\right&#x$rp; \\)};
+    output_row $l, qq{U+$lp U+$rp}, qq{\\[ \\left\\$l $tall \\right\\$r \\]}, qq{\\[ \\left&#x$lp; $tall \\right&#x$rp; \\]};
 
     return;
 }
