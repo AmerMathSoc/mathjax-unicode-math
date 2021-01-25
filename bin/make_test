@@ -82,12 +82,24 @@ sub output_ord {
     return;
 }
 
-sub output_op( $$ ) {
+sub output_bin( $$ ) {
     my $csname = shift;
     my $code_point = shift;
     my $type   = shift;
 
     output_row ${csname}, qq{U+$code_point}, qq{\\( x \\$csname y \\)}, qq{\\( x &#x$code_point; y\\)};
+
+    return;
+}
+
+sub output_op( $$ ) {
+    my $csname = shift;
+    my $code_point = shift;
+    my $type   = shift;
+
+    output_row qq{$csname (nolimits)}, qq{U+$code_point}, qq{\\( \\${csname}_{x}^y \\)}, qq{\\( &#x$code_point;_x^y \\)};
+
+    output_row qq{$csname (limits)}, qq{U+$code_point}, qq{\\( \\${csname}\\limits_{x}^y \\)}, qq{\\( &#x$code_point;\\limits_x^y \\)};
 
     return;
 }
@@ -171,10 +183,10 @@ HANDLERS: {
     my %HANDLERS = (
         ord           => \&output_ord,
         alpha         => \&output_ord,
-        bin           => \&output_op,
+        bin           => \&output_bin,
         op            => \&output_op,
-        punct         => \&output_op,
-        rel           => \&output_op,
+        punct         => \&output_bin,
+        rel           => \&output_bin,
         over          => \&output_underover,
         under         => \&output_underover,
         accent        => \&output_accent,
@@ -237,7 +249,7 @@ sub process_unicode_math_table( $ ) {
 
     close($in);
 
-    for my $type (qw(accent accentwide accentoverlay botaccent botaccentwide over under alpha bin op rel punct ord)) {
+    for my $type (qw(accent accentwide accentoverlay botaccent botaccentwide over under alpha op bin rel punct ord)) {
         open_section("math$type");
 
         my %macros = %{ $csname{$type} };
