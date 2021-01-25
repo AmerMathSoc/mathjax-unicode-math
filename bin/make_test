@@ -16,6 +16,22 @@ my $unicode_math_table = qq{$src_dir/unicode-math-table.tex};
 
 my $output_file = "$test_dir/unicode-math.html";
 
+use Unicode::UCD qw(charinfo);
+
+sub char_name( $ ) {
+    my $usv = shift;
+
+    my $x = qq{U+$usv};
+
+    my $charinfo = charinfo($usv);
+
+    if (exists $charinfo->{name}) {
+        $x .= qq{ $charinfo->{name}};
+    }
+
+    return $x;
+}
+
 OUTPUT: {
     my $fh;
 
@@ -77,7 +93,10 @@ sub output_ord {
     my $code_point = shift;
     my $type       = shift;
 
-    output_row ${csname}, qq{U+$code_point}, qq{\\(\\$csname\\)}, qq{\\(&#x$code_point;\\)};
+    output_row(${csname},
+               qq{\\(\\$csname\\)},
+               qq{\\(&#x$code_point;\\)},
+               char_name($code_point));
 
     return;
 }
@@ -87,7 +106,10 @@ sub output_bin( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output_row ${csname}, qq{U+$code_point}, qq{\\( x \\$csname y \\)}, qq{\\( x &#x$code_point; y\\)};
+    output_row(${csname},
+               qq{\\( x \\$csname y \\)},
+               qq{\\( x &#x$code_point; y\\)},
+               char_name($code_point));
 
     return;
 }
@@ -97,9 +119,15 @@ sub output_op( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output_row qq{$csname (nolimits)}, qq{U+$code_point}, qq{\\( \\${csname}_{x}^y \\)}, qq{\\( &#x$code_point;_x^y \\)};
+    output_row(qq{$csname (nolimits)},
+               qq{\\( \\${csname}_{x}^y \\)},
+               qq{\\( &#x$code_point;_x^y \\)},
+               char_name($code_point));
 
-    output_row qq{$csname (limits)}, qq{U+$code_point}, qq{\\( \\${csname}\\limits_{x}^y \\)}, qq{\\( &#x$code_point;\\limits_x^y \\)};
+    output_row(qq{$csname (limits)},
+               qq{\\( \\${csname}\\limits_{x}^y \\)},
+               qq{\\( &#x$code_point;\\limits_x^y \\)},
+               char_name($code_point));
 
     return;
 }
@@ -109,7 +137,10 @@ sub output_accent( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output_row ${csname}, qq{U+$code_point}, qq{\\( \\${csname}{a} \\)}, qq{\\( \\${csname}{A} \\)};
+    output_row(${csname},
+               qq{\\( \\${csname}{a} \\)},
+               qq{\\( \\${csname}{A} \\)},
+               char_name($code_point));
 
     return;
 }
@@ -119,7 +150,10 @@ sub output_accentwide( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output_row ${csname}, qq{U+$code_point}, qq{\\( \\${csname}{a} \\)}, qq{\\( \\${csname}{aaaaaaaaa} \\)};
+    output_row(${csname},
+               qq{\\( \\${csname}{a} \\)},
+               qq{\\( \\${csname}{aaaaaaaaa} \\)},
+               char_name($code_point));
 
     return;
 }
@@ -129,7 +163,10 @@ sub output_accentoverlay( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output_row ${csname}, qq{U+$code_point}, qq{\\( \\${csname}{a} \\)}, qq{\\( \\${csname}{A} \\)};
+    output_row(${csname},
+               qq{\\( \\${csname}{a} \\)},
+               qq{\\( \\${csname}{A} \\)},
+               char_name($code_point));
 
     return;
 }
@@ -139,7 +176,10 @@ sub output_underover( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output_row ${csname}, qq{U+$code_point}, qq{\\( \\${csname}{a} \\)}, qq{\\( \\${csname}{g} \\)};
+    output_row(${csname},
+               qq{\\( \\${csname}{a} \\)},
+               qq{\\( \\${csname}{g} \\)},
+               char_name($code_point));
 
     return;
 }
@@ -149,7 +189,10 @@ sub output_botaccent( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output_row ${csname}, qq{U+$code_point}, qq{\\( \\${csname}{a} \\)}, qq{\\( \\${csname}{g} \\)};
+    output_row(${csname},
+               qq{\\( \\${csname}{a} \\)},
+               qq{\\( \\${csname}{g} \\)},
+               char_name($code_point));
 
     return;
 }
@@ -159,7 +202,10 @@ sub output_botaccentwide( $$ ) {
     my $code_point = shift;
     my $type   = shift;
 
-    output_row ${csname}, qq{U+$code_point}, qq{\\( \\${csname}{g} \\)}, qq{\\( \\${csname}{gggggggg} \\)};
+    output_row(${csname},
+               qq{\\( \\${csname}{g} \\)},
+               qq{\\( \\${csname}{gggggggg} \\)},
+               char_name($code_point));
 
     return;
 }
@@ -172,9 +218,15 @@ sub output_delim( $$$$ ) {
 
     my $tall = q{\int {1\over\mathrm{house}}\, d\mathrm{house}};
 
-    output_row $l, qq{U+$lp U+$rp}, qq{\\( \\$l x \\$r \\)}, qq{\\( &#x$lp; x &#x$rp; \\)};
+    output_row($l,
+               qq{\\( \\$l x \\$r \\)},
+               qq{\\( &#x$lp; x &#x$rp; \\)},
+               char_name($lp));
 
-    output_row $l, qq{U+$lp U+$rp}, qq{\\[ \\left\\$l $tall \\right\\$r \\]}, qq{\\[ \\left&#x$lp; $tall \\right&#x$rp; \\]};
+    output_row($l,
+               qq{\\[ \\left\\$l $tall \\right\\$r \\]},
+               qq{\\[ \\left&#x$lp; $tall \\right&#x$rp; \\]},
+               char_name($lp));
 
     return;
 }
@@ -276,7 +328,10 @@ sub process_unicode_math_table( $ ) {
     for my $singleton (qw(sqrt cuberoot fourthroot longdivision)) {
         my $code_point = $delimiter{$singleton};
 
-        output_row $singleton, qq{U+$code_point}, qq{\\( \\${singleton} \\)}, qq{\\( &#x$code_point; \\)};
+        output_row($singleton,
+                   qq{\\( \\${singleton} \\)},
+                   qq{\\( &#x$code_point; \\)},
+                   char_name($code_point));
     }
 
     output qq{\n</table>\n\n<table>\n};
