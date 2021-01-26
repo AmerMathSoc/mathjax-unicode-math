@@ -23,7 +23,7 @@
   },
   "scripts": {
     "release": "standard-version",
-    "test": "node test/base.js",
+    "test": "cd bin && perl make_test && cd .. && node test/base.js",
     "postinstall": "cd node_modules/mathjax-full && npm i && npm run compile",
     "build": "cd bin && perl make_maps && cd .. && npx tsc"
   },
