@@ -9,6 +9,7 @@ let unicodeMathMethods: Record<string, ParseMethod> = {};
 unicodeMathMethods.Macro = BaseMethods.Macro;
 unicodeMathMethods.Accent = BaseMethods.Accent;
 unicodeMathMethods.UnderOver = BaseMethods.UnderOver;
+unicodeMathMethods.Not = BaseMethods.Not;
 
 new CommandMap(
     'unicode-math-macros',
