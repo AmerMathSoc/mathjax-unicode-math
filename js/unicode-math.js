@@ -9,6 +9,7 @@ var unicodeMathMethods = {};
 unicodeMathMethods.Macro = BaseMethods_js_1.default.Macro;
 unicodeMathMethods.Accent = BaseMethods_js_1.default.Accent;
 unicodeMathMethods.UnderOver = BaseMethods_js_1.default.UnderOver;
+unicodeMathMethods.Not = BaseMethods_js_1.default.Not;
 new SymbolMap_js_1.CommandMap('unicode-math-macros', {
     acute: ['Accent', '0301'],
     annuity: ['Accent', '20E7'],
