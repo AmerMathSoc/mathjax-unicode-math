@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use version; our $VERSION = qv '0.0.0';
+use version; our $VERSION = qv '1.0.0';
 
 use FindBin;
 
@@ -47,46 +47,123 @@ OUTPUT: {
     };
 }
 
-sub output_ord {
-    my $csname     = shift;
-    my $code_point = shift;
-    my $type       = shift;
+# new CharacterMap('mathchar0mi', ParseMethods.mathchar0mi, {
+#    alpha: '\u03B1',
+# })
 
-    output qq{${csname}: ['Macro', '\\u{$code_point}'],\n};
+sub output_ord {
+    my $csname = shift;
+    my $usv    = shift;
+    my $type   = shift;
+
+    output qq{${csname}: '\\u{$usv}',\n};
+
+    return;
+}
+
+sub output_alpha {
+    my $csname = shift;
+    my $usv    = shift;
+    my $type   = shift;
+
+    output qq{${csname}: '\\u{$usv}',\n};
+
+    return;
+}
+
+# new CharacterMap('mathchar0mo', ParseMethods.mathchar0mo, {
+#     coprod:       ['\u2210', {texClass: TEXCLASS.OP,
+#                               movesupsub: true}],
+# }
+
+sub output_op( $$ ) {
+    my $csname = shift;
+    my $usv    = shift;
+    my $type   = shift;
+
+    output qq{${csname}: ['\\u{$usv}', {texClass: TEXCLASS.OP, movesupsub: true}],\n};
+
+    return;
+}
+
+# new CharacterMap('mathchar0mo', ParseMethods.mathchar0mo, {
+#     coprod:       ['\u2210', {texClass: TEXCLASS.BIN}],
+# }
+
+sub output_bin {
+    my $csname = shift;
+    my $usv    = shift;
+    my $type   = shift;
+
+    output qq{${csname}: ['\\u{$usv}', {texClass: TEXCLASS.BIN}],\n};
+
+    return;
+}
+
+# new CharacterMap('mathchar0mo', ParseMethods.mathchar0mo, {
+#     coprod:       ['\u2210', {texClass: TEXCLASS.PUNCT}],
+# }
+
+sub output_punct {
+    my $csname = shift;
+    my $usv    = shift;
+    my $type   = shift;
+
+    output qq{${csname}: ['\\u{$usv}', {texClass: TEXCLASS.PUNCT}],\n};
+
+    return;
+}
+
+# new CharacterMap('mathchar0mo', ParseMethods.mathchar0mo, {
+#     coprod:       ['\u2210', {texClass: TEXCLASS.REL}],
+# }
+
+sub output_rel {
+    my $csname = shift;
+    my $usv    = shift;
+    my $type   = shift;
+
+    output qq{${csname}: ['\\u{$usv}', {texClass: TEXCLASS.REL}],\n};
 
     return;
 }
 
 # Cf. https://github.com/mathjax/MathJax-src/blob/aa41c0b9362de07c29dcef6de474941385386293/ts/input/tex/base/BaseMappings.ts#L565
 
+# new CommandMap('unicode-math-macros', { acute: ['Accent', '0301'] });
+
 sub output_accent( $$ ) {
     my $csname = shift;
-    my $code_point = shift;
+    my $usv    = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['Accent', '$code_point'],\n};
+    output qq{${csname}: ['Accent', '$usv'],\n};
 
     return;
 }
 
+# new CommandMap('unicode-math-macros', { acute: ['Accent', '0301'] });
+
 sub output_accentwide( $$ ) {
     my $csname = shift;
-    my $code_point = shift;
+    my $usv    = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['Accent', '$code_point', 1],\n};
+    output qq{${csname}: ['Accent', '$usv', 1],\n};
 
     return;
 }
 
 # Cf. https://github.com/mathjax/MathJax-src/blob/aa41c0b9362de07c29dcef6de474941385386293/ts/input/tex/base/BaseMappings.ts#L635
 
+# new CommandMap('unicode-math-macros', { acute: ['Accent', '0301'] });
+
 sub output_accentoverlay( $$ ) {
     my $csname = shift;
-    my $code_point = shift;
+    my $usv    = shift;
     my $type   = shift;
 
-    # output qq{${csname}: ['Accent', '$code_point'],\n};
+    # output qq{${csname}: ['Accent', '$usv'],\n};
 
     output qq{${csname}: 'Not',\n};
 
@@ -95,42 +172,73 @@ sub output_accentoverlay( $$ ) {
 
 # Cf. https://github.com/mathjax/MathJax-src/blob/aa41c0b9362de07c29dcef6de474941385386293/ts/input/tex/base/BaseMappings.ts#L458
 
+# new CommandMap('unicode-math-macros', { acute: ['Accent', '0301'] });
+
 sub output_underover( $$ ) {
     my $csname = shift;
-    my $code_point = shift;
+    my $usv    = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['UnderOver', '$code_point'],\n};
+    output qq{${csname}: ['UnderOver', '$usv'],\n};
 
     return;
 }
+
+# new CommandMap('unicode-math-macros', { acute: ['Accent', '0301'] });
 
 sub output_botaccent( $$ ) {
     my $csname = shift;
-    my $code_point = shift;
+    my $usv    = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['UnderOver', '$code_point'],\n};
+    output qq{${csname}: ['UnderOver', '$usv'],\n};
 
     return;
 }
+
+# new CommandMap('unicode-math-macros', { acute: ['Accent', '0301'] });
 
 sub output_botaccentwide( $$ ) {
     my $csname = shift;
-    my $code_point = shift;
+    my $usv    = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['UnderOver', '$code_point', 1],\n};
+    output qq{${csname}: ['UnderOver', '$usv', 1],\n};
 
     return;
 }
 
-sub output_op( $$ ) {
+# new DelimiterMap('unicode-math-delimiters', ParseMethods.delimiter, {
+
+sub output_open( $$ ) {
     my $csname = shift;
-    my $code_point = shift;
+    my $usv    = shift;
     my $type   = shift;
 
-    output qq{${csname}: ['Macro', '\\\\mmlToken{mo}{\\u{$code_point}}'],\n};
+    output qq{'\\\\$csname': ['\\u{$usv}', { texClass: TEXCLASS.OPEN }],\n};
+    output qq{'\\u{$usv}':  ['\\u{$usv}', { texClass: TEXCLASS.OPEN }],\n};
+
+    return;
+}
+
+sub output_close( $$ ) {
+    my $csname = shift;
+    my $usv    = shift;
+    my $type   = shift;
+
+    output qq{'\\\\$csname': ['\\u{$usv}', { texClass: TEXCLASS.CLOSE }],\n};
+    output qq{'\\u{$usv}':  ['\\u{$usv}', { texClass: TEXCLASS.CLOSE }],\n};
+
+    return;
+}
+
+sub output_fence( $$ ) {
+    my $csname = shift;
+    my $usv    = shift;
+    my $type   = shift;
+
+    output qq{'\\\\$csname': ['\\u{$usv}', { texClass: TEXCLASS.ORD }],\n};
+    output qq{'\\u{$usv}':  ['\\u{$usv}', { texClass: TEXCLASS.ORD }],\n};
 
     return;
 }
@@ -138,11 +246,11 @@ sub output_op( $$ ) {
 HANDLERS: {
     my %HANDLERS = (
         ord           => \&output_ord,
-        alpha         => \&output_ord,
-        bin           => \&output_op,
+        alpha         => \&output_alpha,
+        bin           => \&output_bin,
         op            => \&output_op,
-        punct         => \&output_op,
-        rel           => \&output_op,
+        punct         => \&output_punct,
+        rel           => \&output_rel,
         over          => \&output_underover,
         under         => \&output_underover,
         accent        => \&output_accent,
@@ -150,6 +258,9 @@ HANDLERS: {
         accentwide    => \&output_accentwide,
         botaccent     => \&output_botaccent,
         botaccentwide => \&output_botaccentwide,
+        open          => \&output_open,
+        close         => \&output_close,
+        fence         => \&output_fence,
         );
 
     sub get_handler( $ ) {
@@ -159,20 +270,37 @@ HANDLERS: {
     }
 }
 
+sub process_csnames {
+    my $type     = shift;
+    my $csnames = shift;
+
+    my $handler = get_handler($type);
+
+    if (! defined $handler) {
+        warn "No handler for $type\n";
+
+        next;
+    }
+
+    output qq{// \\math$type\n};
+
+    for my $csname (sort keys %{ $csnames }) {
+        my $usv = $csnames->{$csname};
+
+        $handler->($csname, $usv, $type);
+    }
+
+    return;
+}
+
 sub process_unicode_math_table( $ ) {
     my $table = shift;
-
-    my %delimiter;
-
-    output << 'EOF';
-new CommandMap(
-    'unicode-math-macros',
-    {
-EOF
 
     my %csname;
 
     open(my $in, "<", $table) or die "Can't read $table: $!\n";
+
+    local $_;
 
     while (<$in>) {
         chomp;
@@ -185,23 +313,13 @@ EOF
               \{\\(\w+)\s*\}
               \{\\math(\w+)\s*\}}smxi
             and do {
-                my $code_point = $1;
-                my $csname     = $2;
-                my $type       = $3;
+                my $usv    = $1;
+                my $csname = $2;
+                my $type   = $3;
 
-                $code_point =~ s{^0(....)$}{$1};
+                $usv =~ s{^0(....)$}{$1};
 
-                if ($type eq 'open' || $type eq 'close' || $type eq 'fence') {
-                    $delimiter{$code_point} = $csname;
-                } else {
-                    $csname{$type}->{$csname} = $code_point;
-
-                    # if (defined(my $handler = get_handler($type))) {
-                    #     $handler->($csname, $code_point, $type);
-                    # } else {
-                    #     warn "No handler for $type\n";
-                    # }
-                }
+                $csname{$type}->{$csname} = $usv;
 
                 next;
         };
@@ -211,27 +329,43 @@ EOF
 
     close($in);
 
+    output << 'EOF';
+new CharacterMap('mathchar0mi', ParseMethods.mathchar0mi, {
+EOF
+
+    indent();
+
+    for my $type (qw(alpha ord)) {
+        process_csnames($type, $csname{$type});
+    }
+
+    deindent();
+
+output << 'EOF';
+})
+
+new CharacterMap('mathchar0mo', ParseMethods.mathchar0mo, {
+EOF
+
+    indent();
+
+    for my $type (qw(op bin punct rel)) {
+        process_csnames($type, $csname{$type});
+    }
+
+    deindent();
+
+output << 'EOF';
+})
+
+new CommandMap('unicode-math-macros', { 
+EOF
+
     indent();
     indent();
 
-    for my $type (qw(accent accentwide accentoverlay botaccent botaccentwide over under alpha ord bin op rel punct)) {
-        my %macros = %{ $csname{$type} };
-
-        my $handler = get_handler($type);
-
-        if (! defined $handler) {
-            warn "No handler for $type\n";
-
-            next;
-        }
-
-        output qq{// \\math$type\n};
-
-        for my $csname (sort keys %macros) {
-            my $code_point = $macros{$csname};
-
-            $handler->($csname, $code_point, $type);
-        }
+    for my $type (qw(accent accentwide accentoverlay botaccent botaccentwide over under)) {
+        process_csnames($type, $csname{$type});
     }
 
     deindent();
@@ -245,11 +379,13 @@ EOF
 new DelimiterMap('unicode-math-delimiters', ParseMethods.delimiter, {
 EOF
 
-    for my $code_point (sort { $a cmp $b } keys %delimiter) {
-        my $csname = $delimiter{$code_point};
+    indent();
 
-        output qq{    '\\\\$csname': '\\u{$code_point}',\n};
+    for my $type (qw(open close fence)) {
+        process_csnames($type, $csname{$type});
     }
+
+    deindent();
 
     output qq{\});\n\n};
 
@@ -261,22 +397,10 @@ open(my $ts, "<", $template) or die "Can't open $template: $!\n";
 open_output($output_file);
 
 while (<$ts>) {
-    m{^new CommandMap} and do {
-        while (<$ts>) {
-            last if m{^new EnvironmentMap};
-        }
-
-        last;
+    m{^export const configuration} and do {
+        process_unicode_math_table($unicode_math_table);
     };
 
-    output $_;
-}
-
-process_unicode_math_table($unicode_math_table);
-
-output qq{new EnvironmentMap(\n};
-
-while (<$ts>) {
     output $_;
 }
 
