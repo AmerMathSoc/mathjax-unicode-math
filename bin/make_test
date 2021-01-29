@@ -23,12 +23,6 @@ sub char_name( $ ) {
 
     my $x = qq{U+$usv};
 
-    my $charinfo = charinfo($usv);
-
-    if (exists $charinfo->{name}) {
-        $x .= qq{ $charinfo->{name}};
-    }
-
     return $x;
 }
 
