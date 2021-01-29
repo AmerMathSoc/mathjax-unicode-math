@@ -216,7 +216,7 @@ sub output_delim( $$$$ ) {
     my $r  = shift;
     my $rp = shift;
 
-    my $tall = q{\int {1\over\mathrm{house}}\, d\mathrm{house}};
+    my $tall = q{\int {d\mathrm{house}\over\mathrm{house}}};
 
     output_row($l,
                qq{\\( \\$l x \\$r \\)},
