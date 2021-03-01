@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.1.1...v1.1.2) (2021-03-01)
+
+
+### Bug Fixes
+
+* **package:** rename postinstall script ([2a4af8c](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/2a4af8c956cf50634562e841c32acfbe08103259)), closes [#9](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/9)
+
 ### [1.1.1](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.1.0...v1.1.1) (2021-03-01)
 
 
