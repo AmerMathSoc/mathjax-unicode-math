@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.1.0...v1.1.1) (2021-03-01)
+
+
+### Bug Fixes
+
+* Revised definitions of unicode-math characters. ([3e0b4e7](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/3e0b4e7b91a40ea9bebf182fd33e71ea602cd162))
+
 ## 1.1.0 (2021-01-27)
 
 
