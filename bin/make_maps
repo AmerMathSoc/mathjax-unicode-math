@@ -330,7 +330,7 @@ sub process_unicode_math_table( $ ) {
     close($in);
 
     output << 'EOF';
-new CharacterMap('mathchar0mi', ParseMethods.mathchar0mi, {
+new CharacterMap('unicode-math-mathchar0mi', ParseMethods.mathchar0mi, {
 EOF
 
     indent();
@@ -344,7 +344,7 @@ EOF
 output << 'EOF';
 })
 
-new CharacterMap('mathchar0mo', ParseMethods.mathchar0mo, {
+new CharacterMap('unicode-math-mathchar0mo', ParseMethods.mathchar0mo, {
 EOF
 
     indent();

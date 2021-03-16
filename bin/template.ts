@@ -32,6 +32,6 @@ unicodeMathMethods.Not = BaseMethods.Not;
 export const configuration = Configuration.create('unicode-math', {
     handler: {
         delimiter: ['unicode-math-delimiters'],
-        macro: ['unicode-math-macros', 'unicode-math-delimiters']
+        macro: ['unicode-math-macros', 'unicode-math-delimiters', 'unicode-math-mathchar0mi', 'unicode-math-mathchar0mo']
     },
 });
