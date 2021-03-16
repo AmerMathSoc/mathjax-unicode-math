@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.1.2...v1.1.3) (2021-03-16)
+
+
+### Bug Fixes
+
+* make charactermaps name unique ([3d78065](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/3d78065997448ea2ce6c2bc963666c63352aa5b9)), closes [#10](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/10)
+
 ### [1.1.2](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.1.1...v1.1.2) (2021-03-01)
 
 
