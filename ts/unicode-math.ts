@@ -29,7 +29,7 @@ unicodeMathMethods.Accent = BaseMethods.Accent;
 unicodeMathMethods.UnderOver = BaseMethods.UnderOver;
 unicodeMathMethods.Not = BaseMethods.Not;
 
-new CharacterMap('mathchar0mi', ParseMethods.mathchar0mi, {
+new CharacterMap('unicode-math-mathchar0mi', ParseMethods.mathchar0mi, {
     // \mathalpha
     Angstrom: '\u{212B}',
     BbbA: '\u{1D538}',
@@ -1530,7 +1530,7 @@ new CharacterMap('mathchar0mi', ParseMethods.mathchar0mi, {
     wideangleup: '\u{29A7}',
 })
 
-new CharacterMap('mathchar0mo', ParseMethods.mathchar0mo, {
+new CharacterMap('unicode-math-mathchar0mo', ParseMethods.mathchar0mo, {
     // \mathop
     Bbbsum: ['\u{2140}', {texClass: TEXCLASS.OP, movesupsub: true}],
     Join: ['\u{2A1D}', {texClass: TEXCLASS.OP, movesupsub: true}],
@@ -2574,6 +2574,6 @@ new DelimiterMap('unicode-math-delimiters', ParseMethods.delimiter, {
 export const configuration = Configuration.create('unicode-math', {
     handler: {
         delimiter: ['unicode-math-delimiters'],
-        macro: ['unicode-math-macros', 'unicode-math-delimiters']
+        macro: ['unicode-math-macros', 'unicode-math-delimiters', 'unicode-math-mathchar0mi', 'unicode-math-mathchar0mo']
     },
 });

@@ -26,7 +26,7 @@ unicodeMathMethods.Macro = BaseMethods_js_1.default.Macro;
 unicodeMathMethods.Accent = BaseMethods_js_1.default.Accent;
 unicodeMathMethods.UnderOver = BaseMethods_js_1.default.UnderOver;
 unicodeMathMethods.Not = BaseMethods_js_1.default.Not;
-new SymbolMap_js_1.CharacterMap('mathchar0mi', ParseMethods_js_1.default.mathchar0mi, {
+new SymbolMap_js_1.CharacterMap('unicode-math-mathchar0mi', ParseMethods_js_1.default.mathchar0mi, {
     Angstrom: "\u212B",
     BbbA: "\uD835\uDD38",
     BbbB: "\uD835\uDD39",
@@ -1524,7 +1524,7 @@ new SymbolMap_js_1.CharacterMap('mathchar0mi', ParseMethods_js_1.default.mathcha
     wideangledown: "\u29A6",
     wideangleup: "\u29A7",
 });
-new SymbolMap_js_1.CharacterMap('mathchar0mo', ParseMethods_js_1.default.mathchar0mo, {
+new SymbolMap_js_1.CharacterMap('unicode-math-mathchar0mo', ParseMethods_js_1.default.mathchar0mo, {
     Bbbsum: ["\u2140", { texClass: MmlNode_js_1.TEXCLASS.OP, movesupsub: true }],
     Join: ["\u2A1D", { texClass: MmlNode_js_1.TEXCLASS.OP, movesupsub: true }],
     arabichad: ["\uD83B\uDEF1", { texClass: MmlNode_js_1.TEXCLASS.OP, movesupsub: true }],
@@ -2549,7 +2549,7 @@ new SymbolMap_js_1.DelimiterMap('unicode-math-delimiters', ParseMethods_js_1.def
 exports.configuration = Configuration_js_1.Configuration.create('unicode-math', {
     handler: {
         delimiter: ['unicode-math-delimiters'],
-        macro: ['unicode-math-macros', 'unicode-math-delimiters']
+        macro: ['unicode-math-macros', 'unicode-math-delimiters', 'unicode-math-mathchar0mi', 'unicode-math-mathchar0mo']
     },
 });
 //# sourceMappingURL=unicode-math.js.map
