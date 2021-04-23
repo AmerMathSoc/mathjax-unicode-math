@@ -24,12 +24,11 @@
   "scripts": {
     "release": "standard-version",
     "test": "cd bin && perl make_test && cd .. && node test/base.js",
-    "dev:setup": "cd node_modules/mathjax-full && npm i && npm run compile",
     "build": "cd bin && perl make_maps && cd .. && npx tsc"
   },
   "devDependencies": {
-    "mathjax-full": "github:mathjax/MathJax-src#stix2",
-    "standard-version": "^9.0.0",
-    "typescript": "^3.9.7"
+    "jsdom": "^16.5.3",
+    "mathjax-full": "github:amermathsoc/MathJax-src#e8db09cedd1da5fadaac9a5c8c54d833d6fc4019",
+    "standard-version": "^9.2.0"
   }
 }

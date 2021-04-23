@@ -16,7 +16,9 @@ const {
 
 const unicodeMath = require('../js/unicode-math.js').configuration;
 
-const adaptor = liteAdaptor();
+const { jsdomAdaptor } = require('mathjax-full/js/adaptors/jsdomAdaptor.js');
+const { JSDOM } = require('jsdom');
+const adaptor = jsdomAdaptor(JSDOM);
 RegisterHTMLHandler(adaptor);
 
 const tex = new TeX({
