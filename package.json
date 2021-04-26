@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "jsdom": "^16.5.3",
-    "mathjax-full": "github:amermathsoc/MathJax-src#e8db09cedd1da5fadaac9a5c8c54d833d6fc4019",
+    "mathjax-full": "github:amermathsoc/MathJax-src#2f66ca967b0760a600f77590c8edd33c7b812314",
     "standard-version": "^9.2.0"
   }
 }
