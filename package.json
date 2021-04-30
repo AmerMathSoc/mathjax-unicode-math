@@ -23,12 +23,14 @@
   },
   "scripts": {
     "release": "standard-version",
-    "test": "cd bin && perl make_test && cd .. && node test/base.js",
-    "build": "cd bin && perl make_maps && cd .. && npx tsc"
+    "fromTeX": "cd bin && perl make_maps && perl make_test",
+    "test": "node test/base.js",
+    "build": "npx tsc"
   },
   "devDependencies": {
     "jsdom": "^16.5.3",
     "mathjax-full": "github:amermathsoc/MathJax-src#2f66ca967b0760a600f77590c8edd33c7b812314",
-    "standard-version": "^9.2.0"
+    "standard-version": "^9.2.0",
+    "typescript": "^4.2.4"
   }
 }
