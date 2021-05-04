@@ -2497,7 +2497,8 @@ new DelimiterMap('unicode-math-delimiters', ParseMethods.delimiter, {
     '\u{2993}':  ['\u{2993}', { texClass: TEXCLASS.OPEN }],
     '\\lvzigzag': ['\u{29D8}', { texClass: TEXCLASS.OPEN }],
     '\u{29D8}':  ['\u{29D8}', { texClass: TEXCLASS.OPEN }],
-    '\\sqrt': ['\u{221A}', { texClass: TEXCLASS.OPEN }],
+    // NOTE disabled since it breaks stretchy root overline
+    // '\\sqrt': ['\u{221A}', { texClass: TEXCLASS.OPEN }], 
     '\u{221A}':  ['\u{221A}', { texClass: TEXCLASS.OPEN }],
     '\\ulcorner': ['\u{231C}', { texClass: TEXCLASS.OPEN }],
     '\u{231C}':  ['\u{231C}', { texClass: TEXCLASS.OPEN }],
