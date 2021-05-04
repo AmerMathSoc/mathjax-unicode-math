@@ -1207,6 +1207,8 @@ new CharacterMap('unicode-math-mathchar0mi', ParseMethods.mathchar0mi, {
     draftingarrow: '\u{279B}',
     eighthnote: '\u{266A}',
     elinters: '\u{23E7}',
+    // NOTE STIX TWO fonts have "circle-slash" as normal form of u2205 (cf. varnothing) and zero-slash as variant of u2205; CM has the reverse.
+    emptyset: ['\u2205', {variantForm: true}],
     emptysetoarr: '\u{29B3}',
     emptysetoarrl: '\u{29B4}',
     emptysetobar: '\u{29B1}',
