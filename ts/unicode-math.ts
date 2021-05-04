@@ -2405,11 +2405,14 @@ new CommandMap('unicode-math-macros', {
         vertoverlay: ['Accent', '20D2'],
         widebridgeabove: ['Accent', '20E9'],
         // \mathaccentwide
-        overleftarrow: ['Accent', '20D6', 1],
-        overleftharpoon: ['Accent', '20D0', 1],
-        overleftrightarrow: ['Accent', '20E1', 1],
-        overrightarrow: ['Accent', '20D7', 1],
-        overrightharpoon: ['Accent', '20D1', 1],
+        // NOTE disabled to fallback to core MatJax which uses u2190
+        // overleftarrow: ['Accent', '20D6', 1],
+        overleftharpoon: ['Accent', '21BC', 1],
+        // NOTE disabled to fallback to core MatJax which uses u2190
+        // overleftrightarrow: ['Accent', '20E1', 1],
+        // NOTE disabled to fallback to core MatJax which uses u2190
+        // overrightarrow: ['Accent', '20D7', 1],
+        overrightharpoon: ['Accent', '21BD', 1],
         widebreve: ['Accent', '0306', 1],
         widecheck: ['Accent', '030C', 1],
         widehat: ['Accent', '0302', 1],
@@ -2421,18 +2424,22 @@ new CommandMap('unicode-math-macros', {
         threeunderdot: ['UnderOver', '20E8'],
         // \mathbotaccentwide
         mathunderbar: ['UnderOver', '0332', 1],
-        underleftarrow: ['UnderOver', '20EE', 1],
-        underleftharpoondown: ['UnderOver', '20ED', 1],
-        underleftrightarrow: ['UnderOver', '034D', 1],
-        underrightarrow: ['UnderOver', '20EF', 1],
-        underrightharpoondown: ['UnderOver', '20EC', 1],
+        // NOTE disabled to fallback to core MatJax which uses u2190
+        // underleftarrow: ['UnderOver', '20EE', 1],
+        underleftharpoondown: ['UnderOver', '21BD', 1],
+        // NOTE disabled to fallback to core MatJax which uses u2190
+        // underleftrightarrow: ['UnderOver', '034D', 1],
+        // NOTE disabled to fallback to core MatJax which uses u2192
+        // underrightarrow: ['UnderOver', '20EF', 1],
+        underrightharpoondown: ['UnderOver', '21C1', 1],
         wideutilde: ['UnderOver', '0330', 1],
         // \mathover
         overbrace: ['UnderOver', '23DE'],
         overbracket: ['UnderOver', '23B4'],
         overparen: ['UnderOver', '23DC'],
         // \mathunder
-        underbrace: ['UnderOver', '23DF'],
+        // NOTE disabled to fallback to core MatJax which uses  ['UnderOver', '23DF', 1],
+        // underbrace: ['UnderOver', '23DF'],
         underbracket: ['UnderOver', '23B5'],
         underparen: ['UnderOver', '23DD'],
     },
