@@ -1069,7 +1069,8 @@ new CharacterMap('unicode-math-mathchar0mi', ParseMethods.mathchar0mi, {
     mupvartheta: '\u{03D1}',
     mupxi: '\u{03BE}',
     mupzeta: '\u{03B6}',
-    nabla: '\u{2207}',
+    // NOTE disabled to re-use MathJax's definition (['\u2207', {mathvariant: TexConstant.Variant.NORMAL}])
+    // nabla: '\u{2207}',
     partial: '\u{2202}',
     turnediota: '\u{2129}',
     upDigamma: '\u{03DC}',
