@@ -2408,9 +2408,9 @@ new CommandMap('unicode-math-macros', {
         // NOTE disabled to fallback to core MatJax which uses u2190
         // overleftarrow: ['Accent', '20D6', 1],
         overleftharpoon: ['Accent', '21BC', 1],
-        // NOTE disabled to fallback to core MatJax which uses u2190
+        // NOTE disabled to fallback to core MatJax which uses u2194
         // overleftrightarrow: ['Accent', '20E1', 1],
-        // NOTE disabled to fallback to core MatJax which uses u2190
+        // NOTE disabled to fallback to core MatJax which uses u2192
         // overrightarrow: ['Accent', '20D7', 1],
         overrightharpoon: ['Accent', '21BD', 1],
         widebreve: ['Accent', '0306', 1],
@@ -2427,7 +2427,7 @@ new CommandMap('unicode-math-macros', {
         // NOTE disabled to fallback to core MatJax which uses u2190
         // underleftarrow: ['UnderOver', '20EE', 1],
         underleftharpoondown: ['UnderOver', '21BD', 1],
-        // NOTE disabled to fallback to core MatJax which uses u2190
+        // NOTE disabled to fallback to core MatJax which uses u2194
         // underleftrightarrow: ['UnderOver', '034D', 1],
         // NOTE disabled to fallback to core MatJax which uses u2192
         // underrightarrow: ['UnderOver', '20EF', 1],
