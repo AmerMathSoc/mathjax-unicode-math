@@ -1392,7 +1392,9 @@ new CharacterMap('unicode-math-mathchar0mi', ParseMethods.mathchar0mi, {
     pentagonblack: '\u{2B1F}',
     perps: '\u{2AE1}',
     postalmark: '\u{3012}',
-    prime: '\u{2032}',
+    // NOTE \prime disabled to re-use MathJax's definition (['\u2032', {variantForm: true}])
+    // TODO other primes (e.g., qprime) might need similar variantForm but xetex behavior is more complex 
+    // prime: '\u{2032}',
     profline: '\u{2312}',
     profsurf: '\u{2313}',
     qprime: '\u{2057}',
