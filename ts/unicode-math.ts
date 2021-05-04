@@ -96,6 +96,7 @@ new CharacterMap('unicode-math-mathchar0mi', ParseMethods.mathchar0mi, {
     gimel: '\u{2137}',
     hslash: '\u{210F}',
     imath: '\u{1D6A4}',
+    // NOTE MathJax maps jmath to u0237 (text dotless i); spacing differs with STIX2 
     jmath: '\u{1D6A5}',
     matheth: '\u{00F0}',
     mathhyphen: '\u{2010}',
