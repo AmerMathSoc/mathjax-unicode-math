@@ -24,7 +24,7 @@
   "scripts": {
     "release": "standard-version",
     "fromTeX": "cd bin && perl make_maps && perl make_test",
-    "test": "node test/base.js",
+    "test": "node test/base.js && node test/corrections.js",
     "build": "npx tsc &&  node ./node_modules/mathjax-full/components/bin/makeAll"
   },
   "devDependencies": {

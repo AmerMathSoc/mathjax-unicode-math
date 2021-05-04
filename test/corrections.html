@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mathjax-unicode-math individual tests</title>
+    <style>
+        body {
+            max-width: 40em;
+        }
+    </style>
+    <!-- BUG why doesn't mathjax add this to this file but the other one??? -->
+<style id="MJX-SVG-styles">
+    mjx-container[jax="SVG"] {
+      direction: ltr;
+    }
+    
+    mjx-container[jax="SVG"] > svg {
+      overflow: visible;
+      min-height: 1px;
+      min-width: 1px;
+    }
+    
+    mjx-container[jax="SVG"] > svg a {
+      fill: blue;
+      stroke: blue;
+    }
+    
+    mjx-container[jax="SVG"][display="true"] {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    
+    mjx-container[jax="SVG"][display="true"][width="full"] {
+      display: flex;
+    }
+    
+    mjx-container[jax="SVG"][justify="left"] {
+      text-align: left;
+    }
+    
+    mjx-container[jax="SVG"][justify="right"] {
+      text-align: right;
+    }
+    
+    g[data-mml-node="merror"] > g {
+      fill: red;
+      stroke: red;
+    }
+    
+    g[data-mml-node="merror"] > rect[data-background] {
+      fill: yellow;
+      stroke: none;
+    }
+    
+    g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+      stroke-width: 70px;
+      fill: none;
+    }
+    
+    g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+      stroke-width: 70px;
+      fill: none;
+    }
+    
+    g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+      stroke-dasharray: 140;
+    }
+    
+    g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+      stroke-linecap: round;
+      stroke-dasharray: 0,140;
+    }
+    
+    g[data-mml-node="mtable"] > g > svg {
+      overflow: visible;
+    }
+    
+    [jax="SVG"] mjx-tool {
+      display: inline-block;
+      position: relative;
+      width: 0;
+      height: 0;
+    }
+    
+    [jax="SVG"] mjx-tool > mjx-tip {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+    mjx-tool > mjx-tip {
+      display: inline-block;
+      padding: .2em;
+      border: 1px solid #888;
+      font-size: 70%;
+      background-color: #F8F8F8;
+      color: black;
+      box-shadow: 2px 2px 5px #AAAAAA;
+    }
+    
+    g[data-mml-node="maction"][data-toggle] {
+      cursor: pointer;
+    }
+    
+    mjx-status {
+      display: block;
+      position: fixed;
+      left: 1em;
+      bottom: 1em;
+      min-width: 25%;
+      padding: .2em .4em;
+      border: 1px solid #888;
+      font-size: 90%;
+      background-color: #F8F8F8;
+      color: black;
+    }
+    
+    foreignObject[data-mjx-xml] {
+      font-family: initial;
+      line-height: normal;
+      overflow: visible;
+    }
+    
+    mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+      stroke-width: 3;
+    }
+    </style>
+    </head>
+<body>
+  <!-- NOTE: created for issue #11 -->
+
+  <!-- integrals should not have movable limits by default-->
+
+\[ \awint_0^\infty\]
+\[ \cirfnint^\infty\]
+\[ \fint^\infty\]
+\[ \iiiint_0^\infty\]
+\[ \iiint_0^\infty\]
+\[ \iint_0^\infty\]
+\[ \int_0^\infty\]
+\[ \intBar_0^\infty\]
+\[ \intbar_0^\infty\]
+\[ \intcap_0^\infty\]
+\[ \intclockwise_0^\infty\]
+\[ \intcup_0^\infty\]
+\[ \intlarhk_0^\infty\]
+\[ \intx_0^\infty\]
+\[ \lowint_0^\infty\]
+\[ \npolint_0^\infty\]
+\[ \oiiint_0^\infty\]
+\[ \oiint_0^\infty\]
+\[ \oint_0^\infty\]
+\[ \ointctrclockwise_0^\infty\]
+\[ \pointint_0^\infty\]
+\[ \rppolint_0^\infty\]
+\[ \scpolint_0^\infty\]
+\[ \sqint_0^\infty\]
+\[ \sumint_0^\infty\]
+\[ \upint_0^\infty\]
+\[ \varointclockwise_0^\infty\]
+
+<!-- root should not lose stretchy overlines and optional argument -->
+\[\sqrt{3}\]
+\[\sqrt[3]{p}\]
+
+<!-- small setminus and setminus should be correct -->
+\[\setminus \smallsetminus : A \setminus B = a \smallsetminus b\]
+
+<!-- jmath more space to the left, similar to space for mu -->
+\[(Y,\jmath,\mu)\]
+
+<!-- underrightarrow etc do not need tests here - the main test file suffices -->
+
+<!-- nabla should be normal -->
+\[\nabla\]
+
+<!-- disable \prime to fallback to   -->
+
+\[ x\prime \text{ vs } x^\prime \text{ vs } x' \text{ vs } x^&#x2032; \text{ vs } x&#x2032; \]
+
+<!-- punt on other primes -->
+<!-- 
+\[ x\dprime \text{ vs } x^\dprime \text{ vs } x^&#x2033; \text{ vs } x&#x2033; \]
+\[ x\trprime \text{ vs } x^\trprime \text{ vs } x^&#x2034; \text{ vs } x&#x2034; \]
+\[ x\qprime \text{ vs } x^\qprime \text{ vs } x^&#x2057; \text{ vs } x&#x2057; \]
+
+\[ x\backprime \text{ vs } x^\backprime \text{ vs } x^&#x2035; \text{ vs } x&#x2035; \]
+\[ x\backdprime \text{ vs } x^\backdprime \text{ vs } x^&#x2036; \text{ vs } x&#x2036; \]
+\[ x\backtrprime \text{ vs } x^\backtrprime \text{ vs } x^&#x2037; \text{ vs } x&#x2037; \]
+-->
+
+<!-- varnothing as circle emptyset as slashed 0  -->
+\[\varnothing  \neq \emptyset \]
+
+</body>
+</html>
