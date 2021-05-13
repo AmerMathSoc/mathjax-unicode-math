@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.2.0...v1.2.1) (2021-05-13)
+
+
+### Bug Fixes
+
+* scope package name ([f5b31cd](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/f5b31cd6fbfc104ad6d5bd0ad4170becb30ca2e4)), closes [#16](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/16)
+
 ## [1.2.0](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.1.3...v1.2.0) (2021-05-13)
 
 
