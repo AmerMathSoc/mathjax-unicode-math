@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.1.3...v1.2.0) (2021-05-13)
+
+
+### Features
+
+* client-side build ([fb2cd79](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/fb2cd7994dc7a123cbf981f13d7d557ed268d2a9)), closes [#15](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/15)
+
+
+### Bug Fixes
+
+* **package.json:** run tsc as pretest script ([1d50148](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/1d50148265ab00ccabcd788354152f1eb355813a))
+* add emptyset ([5a65e8f](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/5a65e8f85e1eb25597680ffa2309c20a49e5fbcb)), closes [#11](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/11)
+* disable \nabla ([f9e5b75](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/f9e5b752186f29c3c28d352f0906c6e5aee17705))
+* disable \prime ([1d92989](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/1d929891c21fa0da3fe2e8691c6b8ce04c4f8ebc)), closes [#11](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/11)
+* fix under/over arrow(like) constructions ([e905808](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/e90580866675d47ed7ffb34a62d204e0f44fe318)), closes [#11](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/11)
+* remove movesubsup from integrals ([072c879](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/072c879d143c1e94c81886efa932d1960f30fcf3)), closes [#11](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/11)
+* **unicode-math.ts:** disable sqrt redefinition ([aa1cf27](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/aa1cf27a0a9c1301962dcd7f436ad62e435222de)), closes [#11](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/11)
+
 ### [1.1.3](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.1.2...v1.1.3) (2021-03-16)
 
 
