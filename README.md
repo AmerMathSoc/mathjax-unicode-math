@@ -4,7 +4,7 @@ MathJax TeX extension aiming to (partially) implement the [unicode-math package]
 
 ## MathJax Extension: `unicode-math.js`
 
-Supported macros and environments:
+For supported macros and environments, see [./test/unicode-math.html](test/unicode-math.html)
 
 
 ## Using NodeJS
