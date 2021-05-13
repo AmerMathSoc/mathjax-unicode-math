@@ -1,5 +1,5 @@
 {
-  "name": "mathjax-unicode-math",
+  "name": "@amermathsoc/mathjax-unicode-math",
   "main": "./js/unicode-math.js",
   "version": "1.2.0",
   "description": "MathJax TeX input extension reimplementing (parts of) the unicode-math package",
