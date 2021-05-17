@@ -1112,7 +1112,8 @@ new CharacterMap('unicode-math-mathchar0mi', ParseMethods.mathchar0mi, {
     astrosun: '\u{2609}',
     backdprime: '\u{2036}',
     backprime: '\u{2035}',
-    backslash: '\u{005C}',
+    // NOTE disabled to fallback to core MathJax which uses u2216
+    // backslash: '\u{005C}',
     backtrprime: '\u{2037}',
     barleftarrowrightarrowbar: '\u{21B9}',
     barovernorthwestarrow: '\u{21B8}',
@@ -2415,9 +2416,11 @@ new CommandMap('unicode-math-macros', {
         overrightharpoon: ['Accent', '21BD', 1],
         widebreve: ['Accent', '0306', 1],
         widecheck: ['Accent', '030C', 1],
-        widehat: ['Accent', '0302', 1],
+        // NOTE disabled to fallback to core MathJax which uses u005E
+        // widehat: ['Accent', '0302', 1],
         wideoverbar: ['Accent', '0305', 1],
-        widetilde: ['Accent', '0303', 1],
+        // NOTE disabled to fallback to core MathJax which uses u007E
+        // widetilde: ['Accent', '0303', 1],
         // \mathaccentoverlay
         notaccent: 'Not',
         // \mathbotaccent
