@@ -2437,14 +2437,14 @@ new CommandMap('unicode-math-macros', {
         underrightharpoondown: ['UnderOver', '21C1', 1],
         wideutilde: ['UnderOver', '0330', 1],
         // \mathover
-        overbrace: ['UnderOver', '23DE'],
-        overbracket: ['UnderOver', '23B4'],
-        overparen: ['UnderOver', '23DC'],
+        // overbrace: ['UnderOver', '23DE'],
+        overbracket: ['UnderOver', '23B4'], // NOTE also in mathtools core extension, cf. #24
+        // overparen: ['UnderOver', '23DC'], // NOTE disabled to fallback to core MatJax
         // \mathunder
         // NOTE disabled to fallback to core MatJax which uses  ['UnderOver', '23DF', 1],
         // underbrace: ['UnderOver', '23DF'],
-        underbracket: ['UnderOver', '23B5'],
-        underparen: ['UnderOver', '23DD'],
+        underbracket: ['UnderOver', '23B5'], // NOTE also in mathtools core extension, cf. #24
+        // underparen: ['UnderOver', '23DD'],// NOTE disabled to fallback to core MatJax
     },
     unicodeMathMethods
 );
