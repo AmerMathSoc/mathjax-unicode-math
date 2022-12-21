@@ -13,5 +13,5 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import { Configuration } from 'mathjax-full/js/input/tex/Configuration.js';
+import { Configuration } from "mathjax-full/js/input/tex/Configuration.js";
 export declare const configuration: Configuration;
