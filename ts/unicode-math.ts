@@ -2401,7 +2401,7 @@ new CommandMap('unicode-math-macros', {
         overbar: ['Accent', '0305'],
         ovhook: ['Accent', '0309'],
         rightharpoonaccent: ['Accent', '20D1'],
-        tilde: ['Accent', '0303'],
+        // tilde: ['Accent', '0303'], // NOTE disabled to fallback to core MatJax (which does not use  U+0303 combining tilde)
         vec: ['Accent', '20D7'],
         vertoverlay: ['Accent', '20D2'],
         widebridgeabove: ['Accent', '20E9'],
