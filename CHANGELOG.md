@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.3](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.2.2...v1.2.3) (2022-12-21)
+
+
+### Bug Fixes
+
+* disable \tilde overwrite ([104bc0a](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/104bc0aa78a804754cbc13d08fc7a226fb18edd4)), closes [#22](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/22)
+* disable overbrace, overparen, underparen ([cdd9a69](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/cdd9a690178dabc57d4d086e9799c0521ff73d9e)), closes [#23](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/23)
+
 ### [1.2.2](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.2.1...v1.2.2) (2021-05-17)
 
 
