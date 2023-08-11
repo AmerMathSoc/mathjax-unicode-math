@@ -1,6 +1,6 @@
-const fs =  require('fs');
-const mj = require('./mj');
+import * as fs from 'node:fs';
+import { mj } from './mj.js'
 
-const theSmallString = fs.readFileSync(__dirname +'/corrections.html').toString();
+const theSmallString = fs.readFileSync('./test/corrections.html').toString();
 
-fs.writeFileSync(__dirname+'/corrections-output.html', mj(theSmallString));
+fs.writeFileSync('./test/corrections-output.html', await mj(theSmallString));

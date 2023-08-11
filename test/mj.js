@@ -1,24 +1,24 @@
-const { mathjax } = require('mathjax-full/js/mathjax.js');
-const { TeX } = require('mathjax-full/js/input/tex.js');
-const { SVG } = require('mathjax-full/js/output/svg.js');
-const { liteAdaptor } = require('mathjax-full/js/adaptors/liteAdaptor.js');
-const { RegisterHTMLHandler } = require('mathjax-full/js/handlers/html.js');
+import { mathjax } from 'mathjax-full/js/mathjax.js';
+mathjax.asyncLoad = async (name) => import(name + '.js');
 
-const {
+import { TeX } from 'mathjax-full/js/input/tex.js';
+import { SVG } from 'mathjax-full/js/output/svg.js';
+import { liteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor.js';
+import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html.js';
+
+import {
   BaseConfiguration,
-} = require('mathjax-full/js/input/tex/base/BaseConfiguration.js');
-const {
+} from 'mathjax-full/js/input/tex/base/BaseConfiguration.js';
+import {
   AmsConfiguration,
-} = require('mathjax-full/js/input/tex/ams/AmsConfiguration.js');
-const {
+} from 'mathjax-full/js/input/tex/ams/AmsConfiguration.js';
+import {
   BoldsymbolConfiguration,
-} = require('mathjax-full/js/input/tex/boldsymbol/BoldsymbolConfiguration.js');
+} from 'mathjax-full/js/input/tex/boldsymbol/BoldsymbolConfiguration.js';
 
-const unicodeMath = require('../js/unicode-math.js').configuration;
+import { configuration as unicodeMath } from '../js/unicode-math.js';
 
-const { jsdomAdaptor } = require('mathjax-full/js/adaptors/jsdomAdaptor.js');
-const { JSDOM } = require('jsdom');
-const adaptor = jsdomAdaptor(JSDOM);
+const adaptor = liteAdaptor();
 RegisterHTMLHandler(adaptor);
 
 const tex = new TeX({
@@ -29,22 +29,28 @@ const tex = new TeX({
     unicodeMath.name,
   ],
 });
-const { STIX2Font } = require('mathjax-full/js/output/svg/fonts/stix2.js');
-const stix2Font = new STIX2Font();
+
+import { MathJaxStix2Font } from 'mathjax-stix2-font/mjs/svg.js';
+
+MathJaxStix2Font.defaultParams.separation_factor = 1;
+const stix2Font = new MathJaxStix2Font({
+  dynamicPrefix: 'mathjax-stix2-font/mjs/svg/dynamic'
+});
+
 const svg = new SVG({
+  fontData: stix2Font,
   fontCache: 'global',
-  font: stix2Font,
   displayAlign: 'left',
   displayIndent: '0',
 });
 
-module.exports = (documentstring) => {
-  const mj = mathjax.document(documentstring, {
+export const mj = async (documentstring) => {
+  const mjDoc = mathjax.document(documentstring, {
     InputJax: tex,
     OutputJax: svg,
   });
-  mj.render();
-  return (
-    adaptor.doctype(mj.document) + adaptor.outerHTML(adaptor.root(mj.document))
-  );
+  await mathjax.handleRetriesFor(() => {
+    mjDoc.render()
+  });
+  return `<!DOCTYPE html>${adaptor.outerHTML(adaptor.root(mjDoc.document))}`;
 };
