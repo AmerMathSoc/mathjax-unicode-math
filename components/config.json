@@ -1,0 +1,18 @@
+{
+  "build": {
+    "id": "[ams]/unicode-math",
+    "component": "input/tex/extension/unicode-math",
+    "js": "../js",
+    "ts": "../ts",
+    "targets": ["unicode-math.ts"]
+  },
+  "webpack": {
+    "name": "unicode-math",
+    "js": "../js",
+    "libs": [
+      "components/src/input/tex-base/lib",
+      "components/src/core/lib"
+    ],
+    "dist": "../browser/"
+  }
+}
