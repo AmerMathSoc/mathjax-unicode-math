@@ -13,11 +13,11 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import { Configuration } from "mathjax-full/js/input/tex/Configuration.js";
-import { CommandMap, CharacterMap, DelimiterMap, } from "mathjax-full/js/input/tex/SymbolMap.js";
-import ParseMethods from "mathjax-full/js/input/tex/ParseMethods.js";
-import BaseMethods from "mathjax-full/js/input/tex/base/BaseMethods.js";
-import { TEXCLASS } from "mathjax-full/js/core/MmlTree/MmlNode.js";
+import { Configuration } from "mathjax-full/mjs/input/tex/Configuration.js";
+import { CommandMap, CharacterMap, DelimiterMap, } from "mathjax-full/mjs/input/tex/SymbolMap.js";
+import ParseMethods from "mathjax-full/mjs/input/tex/ParseMethods.js";
+import BaseMethods from "mathjax-full/mjs/input/tex/base/BaseMethods.js";
+import { TEXCLASS } from "mathjax-full/mjs/core/MmlTree/MmlNode.js";
 let unicodeMathMethods = {};
 unicodeMathMethods.Macro = BaseMethods.Macro;
 unicodeMathMethods.Accent = BaseMethods.Accent;
