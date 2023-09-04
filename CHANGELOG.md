@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.3.0...v1.4.0) (2023-09-04)
+
+
+### Features
+
+* add components/lib/unicode-math.js ([b2a6250](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/b2a6250e063c066ebc5a402afd624583a1636be5))
+
+
+### Bug Fixes
+
+* adjust browser build to MathJax v4 ([8636748](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/86367483e3ab3f160cebfde14825482b00725ab3)), closes [mathjax/MathJax#3086](https://github.com/mathjax/MathJax/issues/3086)
+* **unicode-math.ts:** adjust import paths ([92cc19f](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/92cc19fc025bcf79f55c6d0ebd791d8e1f271a43))
+
 ## [1.3.0](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.2.3...v1.3.0) (2023-08-17)
 
 
