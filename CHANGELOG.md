@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.4.0...v2.0.0) (2023-09-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **README:** Drops support for MathJax v3, replaces CJS with ESM.
+
+* **README:** update  to ESM and v2 ([685380b](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/685380b2afd661a0f9c4fe7a2ba79ca439f1d6ba)), closes [#26](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/26) [#27](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/27)
+
 ## [1.4.0](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.3.0...v1.4.0) (2023-09-04)
 
 
