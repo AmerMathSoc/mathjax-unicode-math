@@ -11,8 +11,8 @@ For supported macros and environments, see [./test/unicode-math.html](test/unico
 
 For example, install `mathjax-full` and `mathjax-unicode-math` and use something like
 
-    const { TeX } = require('mathjax/js/input/tex.js');
-    const unicodeMath = require('mathjax-unicode-math').configuration;
+    import { TeX } from 'mathjax/js/input/tex.js';
+    import { configuration as unicodeMath } from 'mathjax-unicode-math';
     const tex = new TeX({
         packages: [unicodeMath.name]
     });
@@ -27,7 +27,7 @@ Follow the instructions from the MathJax documentation on [loading a third-party
     MathJax = {
         loader: {
             load: ['[unicodeMath]/unicode-math.js'],
-            paths: {unicodeMath: 'https://cdn.jsdelivr.net/npm/@amermathsoc/mathjax-unicode-math@1/browser'}
+            paths: {unicodeMath: 'https://cdn.jsdelivr.net/npm/@amermathsoc/mathjax-unicode-math@2/browser'}
         },
         tex: {
             packages: {'[+]': ['unicode-math']}
