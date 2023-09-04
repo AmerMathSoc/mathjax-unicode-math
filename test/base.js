@@ -1,6 +1,6 @@
-const fs =  require('fs');
-const mj = require('./mj');
+import * as fs from 'node:fs';
+import { mj } from './mj.js'
 
-const theBigString = fs.readFileSync(__dirname +'/unicode-math.html').toString();
+const theBigString = fs.readFileSync( './test/unicode-math.html').toString();
 
-fs.writeFileSync(__dirname+'/unicode-math-output.html', mj(theBigString));
+fs.writeFileSync( './test/unicode-math-output.html', await mj(theBigString));

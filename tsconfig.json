@@ -1,9 +1,10 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
-      "target": "ES5",
+      "target": "ES6",
       "downlevelIteration": true,
-      "module": "commonjs",
+      "module": "ES2022",
+      "moduleResolution": "nodenext",
       "declaration": true,
       "noImplicitAny": true,
       "noImplicitReturns": true,
@@ -14,12 +15,11 @@
       "paths": {
         "mathjax-full": ["node_modules/mathjax-full"]
       },
-      "lib": ["es6", "dom"],
+      "lib": ["ES6", "DOM", "ES2020"],
       "noLib": false,
       "sourceMap": true,
       "outDir": "js",
-      "typeRoots": ["./typings"]
+      "typeRoots": []
     },
     "include": ["ts/**/*"],
-    "exclude": ["js", "es5", "components"]
   }

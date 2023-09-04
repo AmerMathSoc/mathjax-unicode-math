@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.2.3...v1.3.0) (2023-08-17)
+
+
+### Features
+
+* upgrade to MathJax v4 ([3d0d678](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/3d0d678ca89ec0b329930a3c3182334cc34e427f)), closes [#44](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/44)
+
 ### [1.2.3](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v1.2.2...v1.2.3) (2022-12-21)
 
 
