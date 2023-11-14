@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 import { Configuration } from "mathjax-full/mjs/input/tex/Configuration.js";
-import { CommandMap, CharacterMap, DelimiterMap, } from "mathjax-full/mjs/input/tex/SymbolMap.js";
+import { CommandMap, CharacterMap, DelimiterMap, } from "mathjax-full/mjs/input/tex/TokenMap.js";
 import ParseMethods from "mathjax-full/mjs/input/tex/ParseMethods.js";
 import BaseMethods from "mathjax-full/mjs/input/tex/base/BaseMethods.js";
 import { TEXCLASS } from "mathjax-full/mjs/core/MmlTree/MmlNode.js";
