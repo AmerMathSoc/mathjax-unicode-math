@@ -19,7 +19,7 @@ import {
   CommandMap,
   CharacterMap,
   DelimiterMap,
-} from "mathjax-full/mjs/input/tex/SymbolMap.js";
+} from "mathjax-full/mjs/input/tex/TokenMap.js";
 import { ParseMethod } from "mathjax-full/mjs/input/tex/Types.js";
 import ParseMethods from "mathjax-full/mjs/input/tex/ParseMethods.js";
 import BaseMethods from "mathjax-full/mjs/input/tex/base/BaseMethods.js";
