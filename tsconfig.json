@@ -3,7 +3,7 @@
     "compilerOptions": {
       "target": "ES6",
       "downlevelIteration": true,
-      "module": "ES2022",
+      "module": "nodenext",
       "moduleResolution": "nodenext",
       "declaration": true,
       "noImplicitAny": true,
@@ -13,7 +13,7 @@
       "removeComments": true,
       "baseUrl": ".",
       "paths": {
-        "mathjax-full": ["node_modules/mathjax-full"]
+        "@mathjax/src": ["node_modules/@mathjax/src"]
       },
       "lib": ["ES6", "DOM", "ES2020"],
       "noLib": false,

@@ -1,20 +1,21 @@
-import { mathjax } from 'mathjax-full/js/mathjax.js';
-mathjax.asyncLoad = async (name) => import(name + '.js');
+import { mathjax } from '@mathjax/src/js/mathjax.js';
+// mathjax.asyncLoad = async (name) => import(name + '.js');
+import '@mathjax/src/js/util/asyncLoad/esm.js';
 
-import { TeX } from 'mathjax-full/js/input/tex.js';
-import { SVG } from 'mathjax-full/js/output/svg.js';
-import { liteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor.js';
-import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html.js';
+import { TeX } from '@mathjax/src/js/input/tex.js';
+import { SVG } from '@mathjax/src/js/output/svg.js';
+import { liteAdaptor } from '@mathjax/src/js/adaptors/liteAdaptor.js';
+import { RegisterHTMLHandler } from '@mathjax/src/js/handlers/html.js';
 
 import {
   BaseConfiguration,
-} from 'mathjax-full/js/input/tex/base/BaseConfiguration.js';
+} from '@mathjax/src/js/input/tex/base/BaseConfiguration.js';
 import {
   AmsConfiguration,
-} from 'mathjax-full/js/input/tex/ams/AmsConfiguration.js';
+} from '@mathjax/src/js/input/tex/ams/AmsConfiguration.js';
 import {
   BoldsymbolConfiguration,
-} from 'mathjax-full/js/input/tex/boldsymbol/BoldsymbolConfiguration.js';
+} from '@mathjax/src/js/input/tex/boldsymbol/BoldsymbolConfiguration.js';
 
 import { configuration as unicodeMath } from '../js/unicode-math.js';
 
@@ -30,11 +31,11 @@ const tex = new TeX({
   ],
 });
 
-import { MathJaxStix2Font } from 'mathjax-stix2-font/mjs/svg.js';
+import { MathJaxStix2Font } from '@mathjax/mathjax-stix2-font/js/svg.js';
 
 MathJaxStix2Font.defaultParams.separation_factor = 1;
 const stix2Font = new MathJaxStix2Font({
-  dynamicPrefix: 'mathjax-stix2-font/mjs/svg/dynamic'
+  dynamicPrefix: '@mathjax/mathjax-stix2-font/js/svg/dynamic'
 });
 
 const svg = new SVG({

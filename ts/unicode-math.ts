@@ -14,17 +14,17 @@
  *  limitations under the License.
  */
 
-import { Configuration } from "mathjax-full/mjs/input/tex/Configuration.js";
+import { Configuration } from "@mathjax/src/js/input/tex/Configuration.js";
 import {
   CommandMap,
   CharacterMap,
   DelimiterMap,
-} from "mathjax-full/mjs/input/tex/TokenMap.js";
-import { ParseMethod } from "mathjax-full/mjs/input/tex/Types.js";
-import ParseMethods from "mathjax-full/mjs/input/tex/ParseMethods.js";
-import BaseMethods from "mathjax-full/mjs/input/tex/base/BaseMethods.js";
+} from "@mathjax/src/js/input/tex/TokenMap.js";
+import { ParseMethod } from "@mathjax/src/js/input/tex/Types.js";
+import ParseMethods from "@mathjax/src/js/input/tex/ParseMethods.js";
+import BaseMethods from "@mathjax/src/js/input/tex/base/BaseMethods.js";
 
-import { TEXCLASS } from "mathjax-full/mjs/core/MmlTree/MmlNode.js";
+import { TEXCLASS } from "@mathjax/src/js/core/MmlTree/MmlNode.js";
 
 let unicodeMathMethods: Record<string, ParseMethod> = {};
 
