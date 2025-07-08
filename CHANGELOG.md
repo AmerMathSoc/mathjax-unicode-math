@@ -1,6 +1,22 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [3.0.0](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v2.0.1...v3.0.0) (2025-07-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* switches from mathjax-full to @mathjax/src package.
+
+### Features
+
+* upgrade and adjust to mathjax v4.0.0-rc.4 ([8df1c9c](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/8df1c9c5a301dbd2648df3a6dc3f805dcc263f86)), closes [#29](https://github.com/AmerMathSoc/mathjax-unicode-math/issues/29)
+
+
+### Bug Fixes
+
+* **package:** switch to commit-and-tag-version ([7d85a4e](https://github.com/AmerMathSoc/mathjax-unicode-math/commit/7d85a4eeb51a079a0c1a5985684a83ef95b599ef))
 
 ### [2.0.1](https://github.com/AmerMathSoc/mathjax-unicode-math/compare/v2.0.0...v2.0.1) (2023-11-14)
 
